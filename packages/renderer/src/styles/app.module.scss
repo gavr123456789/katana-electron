@@ -1,3 +1,26 @@
+
+
+.swiper {
+	width: 100%;
+	height: 100%;
+}
+
+.swiper-slide {
+	/* text-align: center; */
+	/* background: rgb(241, 168, 168); */
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/* flex-grow: 3; */
+
+	/* font-size: 18px; */
+	height: auto;
+	/* -webkit-box-sizing: border-box; */
+	/* padding: 20px; */
+}
+
+
 .app {
   text-align: center;
 
@@ -41,9 +64,9 @@
       }
     }
 
-    button {
-      font-size: calc(10px + 2vmin);
-    }
+    // button {
+    //   font-size: calc(10px + 2vmin);
+    // }
 
     .appLink {
       color: #61dafb;

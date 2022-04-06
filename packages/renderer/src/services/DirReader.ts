@@ -19,6 +19,10 @@ export async function openDir(path: string): Promise<Page> {
 			const name = dirent.name
 			console.log(name);
 			if (dirent.isDirectory()) {
+				result.dirsAndFiles.push({
+					kind: "dir",
+					name: name,
+				})
 			} else if (dirent.isFile()) {
 				result.dirsAndFiles.push({
 					ext: extname(name),
