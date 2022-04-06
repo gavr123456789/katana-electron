@@ -1,21 +1,13 @@
-import electron from '@/assets/electron.png';
-import react from '@/assets/react.svg';
-import vite from '@/assets/vite.svg';
-import styles from '@/styles/app.module.scss';
+// import vite from '@/assets/vite.svg';
+import { Stack } from '@mui/material';
 import { Observer, observer, useLocalObservable } from 'mobx-react';
-import { echo } from './utils/printUtils';
-import { opendir } from 'fs/promises';
-
-
-
-
-try {
-  const dir = await opendir('./');
-  for await (const dirent of dir)
-    echo(dirent.name);
-} catch (err) {
-  console.error(err);
-}
+import { Scrollbar } from 'swiper';
+import { FilePage } from './components/FilePage';
+import { Swiper } from 'swiper/react';
+import { useState } from 'react';
+import { GlobalMenu } from './components/GloabalMenu';
+import { Page } from './components/types';
+import { DEFAULT_PATH } from './services/DirReader';
 
 
 const App = () => {
@@ -26,10 +18,32 @@ const App = () => {
 		}
 	}));
 
+	const [pages] = useState<Page[]>([
+    {
+      path: DEFAULT_PATH,
+      dirsAndFiles: [],
+      selected: false
+    }
+  ])
+
+	const [selectedIsNotEmpty] = useState(false)
+
 	return (
 		<Observer>
 			{() => (
-				<>sas</>
+				<Stack direction="column" alignItems="stretch" height={'100vh'}>
+				<Swiper
+					spaceBetween={30}
+					scrollbar={{
+						hide: true
+					}}
+					slidesPerView={'auto'}
+					modules={[ Scrollbar ]}
+				>
+					{pages.map((page) => <FilePage page={page} />)}
+				</Swiper>
+				<GlobalMenu open={selectedIsNotEmpty} />
+			</Stack>
 			)}
 		</Observer>
 	);

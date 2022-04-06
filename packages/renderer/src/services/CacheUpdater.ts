@@ -1,6 +1,6 @@
 import { watch } from 'chokidar';
+import { DEFAULT_PATH } from './DirReader';
 
-const DEFAULT_PATH = "/home/gavr/test"
 
 
 const watcher = watch(DEFAULT_PATH, {
