@@ -26,7 +26,7 @@ export const FilePage: FC<PageProps> = ({ page }) => {
 	}, []);
 
 	return (
-		<SwiperSlide style={{ width: 200 }}>
+		<SwiperSlide style={{ width: 200, height: 500}}>
 			<Card>
 				<CardContent onClick={handleSelect}>
 					<Swiper
@@ -59,6 +59,7 @@ export const FilePage: FC<PageProps> = ({ page }) => {
 								)
 						)}
 					</Swiper>
+				
 				</CardContent>
 
 				<CardActions disableSpacing>

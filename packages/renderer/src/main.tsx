@@ -1,3 +1,4 @@
+import {createTheme, ThemeProvider} from '@mui/material/styles';
 import { StrictMode } from 'react';
 import { render } from 'react-dom';
 import App from './App';
@@ -21,20 +22,22 @@ import './styles/index.css';
 // }
 
 // disable uppercase on
-// const theme = createTheme({
-// 	// palette: {
-// 	//   primary: green
-// 	// },
-// 	typography: {
-// 		button: {
-// 			textTransform: 'none'
-// 		}
-// 	}
-// });
+const theme = createTheme({
+	// palette: {
+	//   primary: green
+	// },
+	typography: {
+		button: {
+			textTransform: 'none'
+		}
+	}
+});
 
 render(
 	<StrictMode>
+		<ThemeProvider theme={theme}>
 			<App />
+			</ThemeProvider>
 	</StrictMode>,
 	document.getElementById('root'),
 	window.removeLoading
