@@ -4,6 +4,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { join } from 'path';
 import FolderIcon from '@mui/icons-material/Folder';
 import { Page, IDirRow } from './types';
+import { $pages } from '../GlobalStores/MainStore';
 
 export interface DirItemProps {
 	page: Page;
@@ -19,11 +20,12 @@ export const DirRow: FC<DirItemProps> = (props) => {
 
 
 	const handleSelect = useCallback(
-		(_event: React.MouseEvent<HTMLElement>, newActiveBtns: number[]) => {
+		async (_event: React.MouseEvent<HTMLElement>, newActiveBtns: number[]) => {
 			const fullPath = join(path, item.name);
 			if (newActiveBtns.includes(2)) {
 				// открыли папку
 				// addPage(fullPath);
+				await $pages.addPage2(fullPath)
 			} else if (newActiveBtns.includes(1)) {
 				// выбрали папку
 				// selectFile({ item, fullPath });
@@ -40,6 +42,7 @@ export const DirRow: FC<DirItemProps> = (props) => {
 						// selectPage(page);
 					}
 					// removePage(fullPath);
+					$pages.removePage(fullPath)
 				}
 			}
 			setActiveBtns(newActiveBtns);
@@ -50,7 +53,7 @@ export const DirRow: FC<DirItemProps> = (props) => {
 	return (
 		// <ListItem disableGutters >
 		<ToggleButtonGroup
-			sx={{ flexGrow: 1, minHeight: '10px' }}
+			sx={{ flexGrow: 1, minHeight: '10px', maxHeight: 40 }}
 			value={activeBtns}
 			onChange={handleSelect}
 			size="small"

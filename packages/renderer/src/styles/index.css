@@ -19,16 +19,11 @@ code {
 }
 
 #root {
-	position: absolute;
-	top: 0;
-	left: 0;
+
 	height: 100%;
 	width: 100%;
 }
 
-html {
-	height: 100%;
-}
 
 .swiper {
 	width: 100%;
@@ -41,11 +36,12 @@ html {
 
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: center; 
+	border: 2pt red;
 	/* flex-grow: 3; */
 
 	/* font-size: 18px; */
-	height: auto;
+	/* height: auto; */
 	/* -webkit-box-sizing: border-box; */
 	/* padding: 20px; */
 }

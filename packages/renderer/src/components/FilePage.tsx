@@ -8,14 +8,19 @@ import { InfoPanel } from './InfoPanel';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Loading } from './Loading';
 // import { selectPage } from '../model/lastSelectedPage';
-import SwiperCore, { Virtual, Navigation, Pagination, Scrollbar, Mousewheel, FreeMode, Keyboard } from 'swiper';
+import SwiperCore, { Scrollbar, Mousewheel, FreeMode } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Page } from './types';
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/scrollbar";
 
 export interface PageProps {
 	page: Page;
 }
-SwiperCore.use([ Virtual, Navigation, Pagination ]);
+SwiperCore.use([ Scrollbar, Mousewheel, FreeMode ]);
 
 export const FilePage: FC<PageProps> = ({ page }) => {
 	const [ infoPanelOpened, setOpenInfoPanel ] = useState(false);
@@ -26,9 +31,9 @@ export const FilePage: FC<PageProps> = ({ page }) => {
 	}, []);
 
 	return (
-		<SwiperSlide style={{ width: 200, height: 500}}>
-			<Card>
-				<CardContent onClick={handleSelect}>
+		<SwiperSlide style={{width: 200}}>
+			<Card > 
+				<CardContent onClick={handleSelect} style={{height: "500px"}}>
 					<Swiper
 						wrapperTag="div"
 						slidesPerView={'auto'}
@@ -36,7 +41,7 @@ export const FilePage: FC<PageProps> = ({ page }) => {
 						mousewheel={true}
 						freeMode={true}
 						spaceBetween={1}
-						modules={[ Pagination, Scrollbar, Mousewheel, FreeMode ]}
+						modules={[ Scrollbar, Mousewheel, FreeMode ]}
 						// virtual={{
 						// 	addSlidesBefore: 10,
 						// 	addSlidesAfter: 10
@@ -45,6 +50,7 @@ export const FilePage: FC<PageProps> = ({ page }) => {
 							hide: true,
 							draggable: true
 						}}
+						// height={500}
 					>
 						{page.dirsAndFiles.map(
 							(x, i) =>

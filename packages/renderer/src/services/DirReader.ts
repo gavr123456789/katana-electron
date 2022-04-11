@@ -3,7 +3,7 @@ import { Page } from '../components/types';
 import { basename, dirname, extname } from "path";
 import { echo } from '../utils/printUtils';
 
-export const DEFAULT_PATH = '/home/gavr/test';
+export const DEFAULT_PATH = './';
 
 export async function openDir(path: string): Promise<Page> {
 	const result: Page = {
@@ -14,7 +14,7 @@ export async function openDir(path: string): Promise<Page> {
 	}
 
 	try {
-		const dir = await opendir('./');
+		const dir = await opendir(path);
 		for await (const dirent of dir) {
 			const name = dirent.name
 			console.log(name);
