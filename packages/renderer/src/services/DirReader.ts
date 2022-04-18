@@ -1,6 +1,6 @@
 import { opendir } from 'fs/promises';
 import { Page } from '../components/types';
-import { basename, dirname, extname } from "path";
+import { extname } from "path";
 import { echo } from '../utils/printUtils';
 
 export const DEFAULT_PATH = './';
@@ -10,7 +10,6 @@ export async function openDir(path: string): Promise<Page> {
 		dirsAndFiles: [],
 		path,
 		selected: true,
-		
 	}
 
 	try {
@@ -35,6 +34,6 @@ export async function openDir(path: string): Promise<Page> {
 	} catch (err) {
 		console.error(err);
 	}
-	echo("result = ", result)
+	// echo("result = ", result)
 	return result
 }

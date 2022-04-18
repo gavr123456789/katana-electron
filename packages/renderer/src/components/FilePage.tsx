@@ -16,18 +16,24 @@ import { Page } from './types';
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/scrollbar";
+import { $selectedPages } from '../GlobalStores/SelectedStore';
+import { observer } from 'mobx-react-lite';
 
 export interface PageProps {
 	page: Page;
 }
 SwiperCore.use([ Scrollbar, Mousewheel, FreeMode ]);
 
-export const FilePage: FC<PageProps> = ({ page }) => {
+const _FilePage: FC<PageProps> = ({ page }) => {
 	const [ infoPanelOpened, setOpenInfoPanel ] = useState(false);
 
 	const handleSelect = useCallback((e: React.MouseEvent<HTMLDivElement | HTMLUListElement, MouseEvent>) => {
+		console.log("select");
+		
 		if (e.target !== e.currentTarget) return;
-		// selectPage(page);
+		$selectedPages.selectPage({...page})
+		console.log("selected 2");
+
 	}, []);
 
 	return (
@@ -87,4 +93,5 @@ export const FilePage: FC<PageProps> = ({ page }) => {
 	);
 };
 
+export const FilePage = observer(_FilePage)
 FilePage.displayName = 'SwiperSlide';

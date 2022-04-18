@@ -14,6 +14,8 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/scrollbar";
 import { height } from '@mui/system';
+import { $selectedPages } from './GlobalStores/SelectedStore';
+import { echo } from './utils/printUtils';
 
 const App = () => {
 	// const todo = useLocalObservable(() => ({
@@ -26,7 +28,15 @@ const App = () => {
 	const [selectedIsNotEmpty] = useState(false)
 
 	useEffect(() => {
-		openDir(DEFAULT_PATH).then(x => {$pages.addPage(x); $pages.addPage(x)})
+		// openDir(DEFAULT_PATH).then(x => {$pages.addPage(x.path); $pages.addPage(x.path)})
+	  $pages.addPage(DEFAULT_PATH).then(() => {
+			const firstPage = $pages.pages[0]
+			// if (firstPage) {
+				// $selectedPages.selectPage(firstPage)
+				// echo("first page selected: ", $pages.pages[0])
+			// }
+
+		})
 	}, [])
 
 	return (
@@ -43,6 +53,7 @@ const App = () => {
 					direction={"horizontal"}
 					slidesPerView={'auto'}
 					modules={[ Scrollbar, FreeMode, Pagination ]}
+					style={{ marginLeft: "10px", marginRight: "10px"}}
 				>
 					{$pages.pages.map((page, i) => <FilePage key={page.path + i} page={page} />)}
 				</Swiper>

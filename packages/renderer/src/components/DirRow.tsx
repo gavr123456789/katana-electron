@@ -5,6 +5,7 @@ import { join } from 'path';
 import FolderIcon from '@mui/icons-material/Folder';
 import { Page, IDirRow } from './types';
 import { $pages } from '../GlobalStores/MainStore';
+import { $selectedPages } from '../GlobalStores/SelectedStore';
 
 export interface DirItemProps {
 	page: Page;
@@ -24,17 +25,19 @@ export const DirRow: FC<DirItemProps> = (props) => {
 			const fullPath = join(path, item.name);
 			if (newActiveBtns.includes(2)) {
 				// открыли папку
-				// addPage(fullPath);
-				await $pages.addPage2(fullPath)
+				await $pages.addPage(fullPath)
 			} else if (newActiveBtns.includes(1)) {
 				// выбрали папку
-				// selectFile({ item, fullPath });
+				$selectedPages.selectFile({ item, fullPath });
+				
 			} else if (newActiveBtns.length === 0) {
 				// сняли выделение с папки или закрыли папку
 				if (activeBtns.includes(1)) {
 					// unselect folder
 					console.log('unselect folder');
 					// unselectFile({ item, fullPath });
+					$selectedPages.unselectFile({ item, fullPath });
+
 				} else if (activeBtns.includes(2)) {
 					// close folder
 					console.log('close folder');
